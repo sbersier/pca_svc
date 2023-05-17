@@ -50,6 +50,8 @@ To listen to it:
 - set the model file to G_random.pth
 - set the config file to config_pca_38.json
 - select a voice
+- select input test file test.mp3
+- Check Auto predict F0, method to crepe (or your choice)
 - infer (from file or from mic)
 
 ## test_pca.py
@@ -65,6 +67,8 @@ To listen to it:
 - set the model file to G_result.pth
 - set the config file to config_pca_38.json
 - select voice "SPEAKER_01"
+- select input test file test.mp3
+- Check Auto predict F0, method to crepe (or your choice)
 - infer (from file or from mic)
 
 ## fit_pca.py
