@@ -41,7 +41,7 @@ Which means that all 38 voices are the same. This is normal.
 Generates random voices
 Example:
 
-`python randomVoices.py --n_pca 10 --seed 2023 --input_file G_38_speakers_0_v74.pth --output_file G_random.pth`
+`python randomVoices.py --n_pca 30 --seed 1234 --input_file G_38_speakers_0_v74.pth --output_file G_random.pth`
 
 Will generate G_random.pth that will containe 38 randomly generated voices based on 10 principal components. (max n_pca=38)
 
@@ -51,10 +51,10 @@ To listen to it:
 - set the config file to config_pca_38.json
 - select a voice
 - select input test file test.mp3
-- Check Auto predict F0, method to crepe (or your choice), noise scale = 0.8
+- Check Auto predict F0, method to crepe with noise scale = 0.8
 - infer (from file or from mic)
 - You can select another voice in the speaker dropdown menu
-- If you think the generated voices lack variations you can set the option `--amplification` to 2.0 or 3.0 (default is 1.0). It just scales the components by a constant factor. Note that if you increase `--amplification` too much the voices will sound less natural.
+- If you think the generated voices lack variations you can set the option `--amplification` to 1.5 or 2.0 (default is 1.0). It just scales the components by a constant factor. Note that if you increase `--amplification` too much the voices will sound less natural.
 
 ## test_pca.py
 Example:
