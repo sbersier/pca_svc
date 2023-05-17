@@ -54,7 +54,7 @@ To listen to it:
 
 ## test_pca.py
 Example:
-`python test_pca.py -v=1,0,-5`
+`python test_pca.py -v=1.2,0.0,-2.0`
 
 will generate G_result.pth using the specified first 3 components. You can add components if you wish (max nb. of components is 38). For `test_pca.py`, only the first speaker (SPEAKER_01) contains the generated voice.
 
