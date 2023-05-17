@@ -60,6 +60,8 @@ Example:
 
 will generate G_result.pth using the specified first 3 components. You can add components if you wish (max nb. of components is 38). For `test_pca.py`, only the first speaker (SPEAKER_01) contains the generated voice.
 
+You can experiment by starting from 0,0,0,... and increase or decrease each component separately and try to figure out what they correspond to.
+
 To listen to it:
 - launch svcg
 - set the model file to G_result.pth
