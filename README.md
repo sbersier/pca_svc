@@ -51,9 +51,10 @@ To listen to it:
 - set the config file to config_pca_38.json
 - select a voice
 - select input test file test.mp3
-- Check Auto predict F0, method to crepe (or your choice)
+- Check Auto predict F0, method to crepe (or your choice), noise scale = 0.8
 - infer (from file or from mic)
 - You can select another voice in the speaker dropdown menu
+- If you think the generated voices lack variations you can set the option `--amplification` to 2.0 or 3.0 (default is 1.0). It just scales the components by a constant factor. Note that if you increase `--amplification` too much the voices will sound less natural.
 
 ## test_pca.py
 Example:
