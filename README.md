@@ -30,6 +30,8 @@ To give it a try:
 
 Then download `G_38_speakers_0_v74.pth` from here:
 
+link here
+
 and put it into your `pca_svc` folder
 
 `G_38_speakers_0_v74.pth` is the "neutral" model where all speakers embeddings have been set to zero.
