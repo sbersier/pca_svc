@@ -53,6 +53,7 @@ To listen to it:
 - select input test file test.mp3
 - Check Auto predict F0, method to crepe (or your choice)
 - infer (from file or from mic)
+- You can select another voice in the speaker dropdown menu
 
 ## test_pca.py
 Example:
