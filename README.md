@@ -28,9 +28,7 @@ To give it a try:
 
 `cd pca_svc`
 
-Then download `G_38_speakers_0_v74.pth` from here:
-
-link here
+Then download `G_38_speakers_0_v74.pth` from [here](https://drive.google.com/file/d/14ikSGDTG9GgabmlToEMlIy5szVJ3dtol/view?usp=sharing)
 
 and put it into your `pca_svc` folder
 
