@@ -1,6 +1,6 @@
 # pca_svc
 
-A multispeaker model for so-vits-svc-fork was trained on 38 speakers (18 males/20 females) adult, english speaking readers from librivox. (note: Because of this, it might not be suited for "singing" voices. I haven't tried.)
+A multispeaker model for [so-vits-svc-fork](https://github.com/voicepaw/so-vits-svc-fork) was trained on 38 speakers (18 males/20 females) adult, english speaking readers from librivox. (note: Because of this, it might not be suited for "singing" voices. I haven't tried.)
 
 The resulting voice embeddings ( `model['model']['emb_g.weight']` ) were processed to extract the principal components and the principal directions in order to generate new voices. 
 The good point with voices that do not exist is that you can use them without fear. You choose (or randomly generate) a few numbers and you get a voice. 
