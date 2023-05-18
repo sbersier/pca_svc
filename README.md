@@ -47,7 +47,7 @@ You can generate the test example with:
 
 `svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3` 
 
-There is also an option: option: `--randomize_other_components=true`    (by default set to `false`).
+There is also an option:`--randomize_other_components=true`    (by default set to `false`).
 This option will fill the remaining components with random values compatible with the original dataset. 
 
 EXPLORATION GUIDE:
