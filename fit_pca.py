@@ -17,7 +17,7 @@ X=X.cpu()
 #N_speakers=len(X[:,0])
 with open('../../logs/44k/config.json','r') as f:
     conf=json.loads(f.read())
-N_speakers=conf['model'][n_speakers]
+N_speakers=conf['model'][N_speakers]
 X=X[0:N_speakers,:]
 
 # Fitting
@@ -43,6 +43,10 @@ for i in range(N_speakers):
 # Save neutral model    
 torch.save(m, 'G_38_speakers_0_v74.pth')
 print('Neutral model saved to G_38_speakers_0_v74.pth')
+
+exit()
+
+# Below, the plot is specific to my dataset
 
 # plot
 import matplotlib.pyplot as plt
