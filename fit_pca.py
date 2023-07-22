@@ -17,7 +17,7 @@ X=X.cpu()
 #N_speakers=len(X[:,0])
 with open('../../logs/44k/config.json','r') as f:
     conf=json.loads(f.read())
-N_speakers=conf['model'][N_speakers]
+N_speakers=conf['model']['n_speakers']
 X=X[0:N_speakers,:]
 
 # Fitting
