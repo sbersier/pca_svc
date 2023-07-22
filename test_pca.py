@@ -5,7 +5,7 @@ import os, sys
 from joblib import load
 from tqdm import tqdm
 import argparse
-# usage: python test_pca.py -r=true -v=-2,0,0,... 
+# usage: python test_pca.py -r=true -c=-2,0,0,... 
     
 def getSpeakers(config):
     List_speakers=[]
