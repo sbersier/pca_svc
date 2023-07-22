@@ -14,7 +14,11 @@ m=torch.load('../../logs/44k/G_74.pth',weights_only=True)
 X=m['model']['emb_g.weight']
 X=X.cpu()
 
-N_speakers=len(X[:,0])
+#N_speakers=len(X[:,0])
+with open('../../logs/44k/config.json','r') as f:
+    conf=json.loads(f.read())
+N_speakers=conf['model'][n_speakers]
+X=X[0:N_speakers,:]
 
 # Fitting
 pca = PCA(svd_solver='full')
