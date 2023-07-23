@@ -40,7 +40,7 @@ Which means that all 38 voices are the same. This is absolutely normal.
 
 ## test_pca.py
 Example:
-`python test_pca.py -v=1.2,0.0,-2.0`   (NOTE: Don't forget the "=" sign and no space)
+`python test_pca.py -c=1.2,0.0,-2.0`   (NOTE: Don't forget the "=" sign and no space)
 
 will generate `G_result.pth` using the specified first 3 components. You can add components if you wish (max nb. of components is 38). Note that only the first speaker (SPEAKER_01) contains the generated voice. (see `randomVoices.py` below for more speakers)
 You can generate the test example with:
@@ -58,14 +58,14 @@ To explore, I would recommend:
 
 1) Start with 1 component (for example: +4.0 or -4.0) to see the effect:
 ```
-python test_pca.py -v=+4.0
+python test_pca.py -c=+4.0
 svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3 
 ```
 Listen to test.out.mp3
 
 Then do the same with:
 ```
-python test_pca.py -v=-4.0
+python test_pca.py -c=-4.0
 svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3 
 ```
 
