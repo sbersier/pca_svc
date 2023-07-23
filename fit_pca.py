@@ -28,11 +28,10 @@ m=torch.load(args.model,weights_only=True)
 # We only care about emb_g.weight
 X=m['model']['emb_g.weight']
 X=X.cpu()
-#N_speakers=len(X[:,0])
+
 with open(args.conf,'r') as f:
     conf=json.loads(f.read())
 N_speakers=len(list(conf['spk']))
-
 
 X=X[0:N_speakers,:]
 
