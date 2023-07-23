@@ -40,12 +40,15 @@ Which means that all 38 voices are the same. This is absolutely normal.
 
 ## test_pca.py
 Example:
-`python test_pca.py -c=1.2,0.0,-2.0`   (NOTE: Don't forget the "=" sign and no space)
+`python test_pca.py -c=-8,-6,0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
+NOTES: 
+1) Don't forget the "=" sign and no space)
+2) models names ALWAYS must start with "G_" otherwise svcg doesn't show them.
+   
+will generate `G_Alice_young.pth` (the model) and `Alice_young.json` (the config file) containing 1 voice named "Alice" using the specified first 3 components. You can add components if you wish (max nb. of components is 38 in our case). 
+You can generate a test example with:
 
-will generate `G_result.pth` using the specified first 3 components. You can add components if you wish (max nb. of components is 38). Note that only the first speaker (SPEAKER_01) contains the generated voice. (see `randomVoices.py` below for more speakers)
-You can generate the test example with:
-
-`svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3` 
+`svc infer -a -fm crepe -m G_Alice_young.pth -c Alice_young.json -o test.out.mp3 test.mp3` 
 
 There is also an option:`--randomize_other_components=true`    (by default set to `false`).
 This option will fill the remaining components with random values compatible with the original dataset. 
