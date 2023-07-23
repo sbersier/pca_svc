@@ -41,8 +41,11 @@ Which means that all 38 voices are the same. This is absolutely normal.
 ## test_pca.py
 
 Example:
+
 `python test_pca.py -c=-8,-6,0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
+
 NOTES: 
+
 1) Don't forget the "=" sign and no space)
 2) models names ALWAYS must start with "G_" otherwise svcg doesn't show them.
    
@@ -62,22 +65,24 @@ To explore, I would recommend:
 
 1) Start with 1 component (for example: +4.0 or -4.0) to see the effect:
 ```
-python test_pca.py -c=+4.0
-svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3 
+python test_pca.py -c=-6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+svc infer -a -fm crepe -m G_test.pth -c config_pca_38.json -o test.out.mp3 test.mp3 
 ```
 Listen to test.out.mp3
 
 Then do the same with:
 ```
-python test_pca.py -c=-4.0
-svc infer -a -fm crepe -m G_result.pth -c config_pca_38.json -o test.out.mp3 -s SPEAKER_01 test.mp3 
+python test_pca.py -c=+6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+svc infer -a -fm crepe -m G_test.pth -c config_pca_38.json -o test.out.mp3 test.mp3 
 ```
 
 2) Once you have chosen your preferred value, pass to the second component:
 ```
-python test_pca.py -v=+4.0,-4.0
-...
-python test_pca.py -v=+4.0,+4.0
+python test_pca.py -c=+6,-6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+.
+.
+.
+python test_pca.py -c=+4,+4  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
 ```
 and so on...
 
@@ -85,19 +90,21 @@ and so on...
 You can fill the rest of the components with the --randomize_other_components=true 
 You can run it a few times, it should stay relatively close to your choice but add a bit of variations.
 
+For example, for a low boomin male voice:
+`python test_pca.py -c=10,-10,-10 -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json`
 
 ## randomVoice.py: 
 Generates 38 random voices, given a specified number of components (n_pca)
 Example:
 
-`python randomVoices.py --n_pca 38 --amplification 1.5 --seed 42 --input_file G_38_speakers_0_v74.pth --output_file G_random_seed_25.pth`
+`python randomVoices.py --amplification 1.5 --seed 123456 --input_file G_38_speakers_0_v74.pth --config config_pca_38.json `
 
-Will generate G_random.pth that will contain 38 randomly generated voices based on 10 principal components. (max n_pca=38)
+Will generate `G_random_seed_123456_PCA_38_scale_1.5.pth` that will contain 38 randomly generated voices and the config file `random_config.json`
 
 To listen to it:
 - launch svcg
-- set the model file to G_random.pth
-- set the config file to config_pca_38.json
+- set the model file to G_random_seed_123456_PCA_38_scale_1.5.pth
+- set the config file to random_config.json
 - select a voice
 - select input test file test.mp3
 - Check Auto predict F0, method to crepe
@@ -107,4 +114,22 @@ To listen to it:
 
 
 ## fit_pca.py
-The script used to compute the components (not very useful for you). I put it here for reference.
+The script used to compute the principal components and the statistical their properties.
+
+Assuming you have trained a multispeaker model (note: the number of speakers must be as large as you can afford. I used 38 speakers)
+
+And assuming your model is named: G_multispeaker.pth
+
+With configuration file: multispeaker.json
+
+Then,
+
+`python fit_pca.py --conf multispeaker.json --model G_multispeaker.pth --output G_neutral.pth`
+
+will produce:
+1) a neutral model G_neutral.pth (by neutral, I mean all voices are the same)
+2) PCA_VECTORS.npy : containing the principal components
+3) PCA_MEAN.npy : the average value of the projection of the trained voices on the principal components 
+4) XPCA_STD.npy : the standard deviation of the projection of the trained voices on the the principal components 
+
+
