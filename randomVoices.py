@@ -8,15 +8,19 @@ import os, sys
 from joblib import load
 from tqdm import tqdm
 import argparse
+import json
 
 # Example of usage: python randomVoices.py --n_pca 38 --amplification 1.5 --seed 42 --input_file G_38_speakers_0_v74.pth --output_file G_random_seed_25.pth
 
 argParser = argparse.ArgumentParser()
-argParser.add_argument("-n", "--n_pca", help="nb. of principal components (int)", type=int, default=38)
+argParser.add_argument("-n", "--n_pca", help="nb. of principal components (int)", type=int, default=None)
 argParser.add_argument("-s", "--seed", help="set fixed random seed", type=int, default=None)
 argParser.add_argument("-a", "--amplification", help="amplification factor", type=float, default=1)
-argParser.add_argument("-i", "--input_file", help="starting multispeaker generator (.pth)", type=str)
-argParser.add_argument("-o", "--output_file", help="name of output .pth file (should start with \"G_\")",type=str,default='G_random_seed_<seed>_PCA_<n_pca>_scale_<scale>.pth')
+argParser.add_argument("-i", "--input_file", help="neutral multispeaker file (.pth)", type=str)
+argParser.add_argument("-c", "--config", help="original config file (.json)", type=str)
+argParser.add_argument("-o", "--output_file", help="name of output .pth file (should start with \"G_\")",type=str)
+argParser.add_argument("-g", "--output_config", help="name of output config file (.json)",type=str,default='random_config.json')
+argParser.add_argument("-d", "--dump",help="dump generated components to dump.npy (true/false)",type=bool, default=True)
 
 args = argParser.parse_args()
 
@@ -25,31 +29,20 @@ Amplification=args.amplification
 # Set random seed
 Seed=args.seed
 
-model_0=torch.load('G_38_speakers_0_v74.pth',weights_only=True)
+model_0=torch.load(args.input_file,weights_only=True)
+device=model_0['model']['emb_g.weight'].device
 
-Mean_C0_males=+1.5
-Mean_C0_females=-1.5
-Std_C0_males=0.8
-Std_C0_females=0.8
-def bimodal(MF, Mean_C0_females,Mean_C0_males, Std_C0_females, Std_C0_males):
-    if MF==+1:
-        return (np.random.randn()+Mean_C0_females)*Std_C0_females
-    else:
-        return (np.random.randn()+Mean_C0_males)*Std_C0_males
-    
-    
+if N_pca==None:
+    N_pca=model_0['model']['emb_g.weight'].shape[0]
+
 if Seed:
     np.random.seed(Seed)
 
-if args.output_file=='G_random_seed_<seed>_PCA_<n_pca>_scale_<scale>.pth':
+if args.output_file==None:
     output_file='G_random_seed_'+str(Seed)+'_PCA_'+str(args.n_pca)+'_scale_'+str(Amplification)+'.pth'
 else:
     output_file=args.output_file
 
-
-# Load model 
-#model_0=torch.load(args.input_file,weights_only=True)
-device=model_0['model']['emb_g.weight'].device
 
 # Load PCA components:
 PCA_mean=np.load('PCA_MEAN.npy')
@@ -73,8 +66,6 @@ if N_pca<1:
 N_speakers=len(model_0['model']['emb_g.weight'][:,0])
 
 PCA_COMP=np.random.randn(N_speakers,N_pca)
-for i in range(N_speakers):
-    PCA_COMP[i,0]=bimodal(np.mod(i,2), Mean_C0_females,Mean_C0_males, Std_C0_females, Std_C0_males)
 
 for i in range(N_pca):
     PCA_COMP[:,i]*=XPCA_std[i]
@@ -91,4 +82,29 @@ print('*'*32)
 print('Result saved to : ',output_file)
 print('Done')
 print('*'*32)
+
+if args.dump:
+    np.array(V.cpu()).dump('dump.npy')
+    print('*'*32)
+    print('Components dumped to : dump.npy')
+    print('Done')
+print('*'*32)
+
+# Generate new config file:
+
+with open(args.config,'r') as f:
+    conf=json.loads(f.read())
+ns={'SPEAKER_'+"{:03d}".format(i+1):i for i in range(N_speakers)}
+
+# dum
+conf['spk']=ns
+if args.dump:
+    with open(args.output_config,'w') as f:
+        json.dump(conf,f,indent=2)   
+
+print('*'*32)
+print('Config saved to : ',args.output_config)
+print('Done')
+print('*'*32)
+
 #############################################################################################
