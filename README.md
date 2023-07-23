@@ -88,7 +88,7 @@ Example:
 
 `python randomVoices.py --n_pca 25 --amplification 1.5 --seed 42 --input_file G_38_speakers_0_v74.pth --output_file G_random.pth`
 
-Will generate G_random.pth that will containe 38 randomly generated voices based on 10 principal components. (max n_pca=38)
+Will generate G_random.pth that will contain 38 randomly generated voices based on 10 principal components. (max n_pca=38)
 
 To listen to it:
 - launch svcg
