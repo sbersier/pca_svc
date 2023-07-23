@@ -7,18 +7,33 @@ from sklearn.decomposition import PCA
 import os
 import torch
 import json
+import argparse
+
+# Example of usage: python fit_pca.py --conf config.json --model G_74.pth --output G_neutral_38_speakers.pth
+
+argParser = argparse.ArgumentParser()
+argParser.add_argument("-c", "--conf", help="config file", type=str, default="config.json")
+argParser.add_argument("-m", "--model", help="multipeaker model (.pth)", type=str)
+argParser.add_argument("-o", "--output", help="name of output .pth file (should start with \"G_\")",type=str,default='G_neutral_model.pth')
+
+args = argParser.parse_args()
+print(args)
+
+if args.model==None:
+    raise ValueError('You have to give the path to an existing multispeaker model.')
 
 # Load the trained multispeakers model
-m=torch.load('../../logs/44k/G_74.pth',weights_only=True)
+m=torch.load(args.model,weights_only=True)
 
 # We only care about emb_g.weight
 X=m['model']['emb_g.weight']
 X=X.cpu()
-
 #N_speakers=len(X[:,0])
-with open('../../logs/44k/config.json','r') as f:
+with open(args.conf,'r') as f:
     conf=json.loads(f.read())
-N_speakers=conf['model']['n_speakers']
+N_speakers=len(list(conf['spk']))
+
+
 X=X[0:N_speakers,:]
 
 # Fitting
@@ -42,11 +57,10 @@ for i in range(N_speakers):
     m['model']['emb_g.weight'][i]=mean
 
 # Save neutral model    
-torch.save(m, 'G_38_speakers_0_v74.pth')
-print('Neutral model saved to G_38_speakers_0_v74.pth')
+torch.save(m, args.output)
+print('Neutral model saved to '+args.output)
 
 exit()
-
 # Below, the plot is specific to my dataset
 
 # plot
