@@ -10,7 +10,7 @@ from tqdm import tqdm
 import argparse
 import json
 
-# Example of usage: python randomVoices.py --n_pca 38 --amplification 1.5 --seed 42 --input_file G_38_speakers_0_v74.pth --output_file G_random_seed_25.pth
+# Example of usage: python randomVoices.py --amplification 1.5 --seed 42 --input_file G_38_speakers_0_v74.pth --output_file G_random_seed_25.pth
 
 argParser = argparse.ArgumentParser()
 argParser.add_argument("-n", "--n_pca", help="nb. of principal components (int)", type=int, default=None)
