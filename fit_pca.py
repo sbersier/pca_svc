@@ -42,8 +42,6 @@ X_pca = pca.transform(X)
 principalVectors=pca.components_
 principalComponents=X_pca
 
-print(principalComponents.shape)
-
 # Saving the results
 #np.save('PRINCIPAL_COMPONENTS.npy', pca.transform(X))
 np.save('PCA_VECTORS.npy', principalVectors)
