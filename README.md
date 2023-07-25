@@ -40,6 +40,8 @@ Which means that all 38 voices are the same. This is absolutely normal.
 
 ## test_pca.py
 
+(help: `python test_pca.py --help`)
+
 Example:
 
 `python test_pca.py -c=-8,-6,0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
@@ -94,6 +96,9 @@ For example, for a low booming male voice:
 `python test_pca.py -c=10,-10,-10 -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json`
 
 ## randomVoice.py: 
+
+(help: `python randomVoices.py --help`)
+
 Generates 38 random voices, given a specified number of components (n_pca)
 Example:
 
@@ -114,6 +119,9 @@ To listen to it:
 
 
 ## fit_pca.py
+
+(help: `python fit_pca.py --help`)
+
 The script used to compute the principal components and the statistical their properties.
 
 Assuming you have trained a multispeaker model (note: the number of speakers must be as large as you can afford. I used 38 speakers)
