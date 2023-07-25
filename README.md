@@ -102,7 +102,7 @@ For example, for a low booming male voice:
 Generates 38 random voices, given a specified number of components (n_pca)
 Example:
 
-`python randomVoices.py --amplification 1.5 --seed 123456 --input_file G_38_speakers_0_v74.pth --config config_pca_38.json `
+`python randomVoices.py --amplification 1.5 --seed 123456 --input_file G_38_speakers_0_v74.pth --config config_pca_38.json`
 
 Will generate `G_random_seed_123456_PCA_38_scale_1.5.pth` that will contain 38 randomly generated voices and the config file `random_config.json`
 The `--amplitication` (float point number) scales scales the generated random vectors. It will make the voices more diverse. Conversely, if you set it to 0.0 then all voices will be equal to the neutral voice. If you go too high, then voices start to sound weird (but it can be funny).
@@ -117,6 +117,27 @@ To listen to it:
 - infer
 - You can select another voice in the speaker dropdown menu
 - If you think the generated voices lack variations you can set the option `--amplification` to 1.5 or 2.0 (default is 1.0). It just scales the components by a constant factor. Note that if you increase `--amplification` too much the voices will sound less natural.
+
+## extractVoices.py
+
+(help: `python extractVoices.py --help`)
+
+Assuming you found interesting voices in `G_random_seed_123456_PCA_38_scale_1.5.pth` (see example above with randomVoices.py):
+voices 6, 30 and 18 and decide to name them Alice, Bob and Charlie
+You extract thes voices from randomly generated model using:
+
+python extractVoices.py --model G_random_seed_123456_PCA_38_scale_1.5.pth --conf random_config.json --list 6,30,18 --name Alice,Bob,Charlie --output G_Alice_Bob_Charlie.pth
+
+The terminal output:
+
+```
+********************************
+Model saved to:  G_Alice_Bob_Charlie.pth
+config file saved to :  Alice_Bob_Charlie.json
+********************************
+```
+
+Then you can use svcg as usual.
 
 
 ## fit_pca.py
