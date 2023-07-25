@@ -5,7 +5,7 @@ A multispeaker model for [so-vits-svc-fork](https://github.com/voicepaw/so-vits-
 The resulting voice embeddings ( `model['model']['emb_g.weight']` ) were processed to extract the principal components and the principal directions in order to generate new voices. 
 The good point with voices that do not exist is that you can use them without fear. You choose (or randomly generate) a few numbers and you get a voice. 
 
-Thanks to [@hataori-p](https://github.com/hataori-p) and [@Z3Coder](https://github.com/Z3Coder) for useful discussions.
+Thanks to [@hataori-p](https://github.com/hataori-p) and [@Z3Coder](https://github.com/Z3Coder) and Void Stryker for useful discussions.
 
 NOTE: All this is a bit shaky and not user-friendly (no nice GUI). Also, the principal directions would probably be more meaningful with a lot more speakers during the training... For the moment, I would say that only the first, the second and, maybe the third components (components 0,1,2) are "useful".
 
