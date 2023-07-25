@@ -105,6 +105,7 @@ Example:
 `python randomVoices.py --amplification 1.5 --seed 123456 --input_file G_38_speakers_0_v74.pth --config config_pca_38.json `
 
 Will generate `G_random_seed_123456_PCA_38_scale_1.5.pth` that will contain 38 randomly generated voices and the config file `random_config.json`
+The `--amplitication` (float point number) scales scales the generated random vectors. It will make the voices more diverse. Conversely, if you set it to 0.0 then all voices will be equal to the neutral voice. If you go too high, then voices start to sound weird (but it can be funny).
 
 To listen to it:
 - launch svcg
