@@ -39,7 +39,7 @@ if Seed:
     np.random.seed(Seed)
 
 if args.output_file==None:
-    output_file='G_random_seed_'+str(Seed)+'_PCA_'+str(args.n_pca)+'_scale_'+str(Amplification)+'.pth'
+    output_file='G_random_seed_'+str(Seed)+'_PCA_'+str(N_pca)+'_scale_'+str(Amplification)+'.pth'
 else:
     output_file=args.output_file
 
