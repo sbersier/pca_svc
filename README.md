@@ -44,7 +44,7 @@ Which means that all 38 voices are the same. This is absolutely normal.
 
 Example:
 
-`python test_pca.py -c -8-6 0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
+`python test_pca.py -c -8 -6 0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
 
 NOTES: 
 
@@ -67,24 +67,24 @@ To explore, I would recommend:
 
 1) Start with 1 component (for example: +4.0 or -4.0) to see the effect:
 ```
-python test_pca.py -c=-6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+python test_pca.py -c -6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
 svc infer -a -fm crepe -m G_test.pth -c config_pca_38.json -o test.out.mp3 test.mp3 
 ```
 Listen to test.out.mp3
 
 Then do the same with:
 ```
-python test_pca.py -c=+6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+python test_pca.py -c +6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
 svc infer -a -fm crepe -m G_test.pth -c config_pca_38.json -o test.out.mp3 test.mp3 
 ```
 
 2) Once you have chosen your preferred value, pass to the second component:
 ```
-python test_pca.py -c=+6,-6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+python test_pca.py -c +6 -6  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
 .
 .
 .
-python test_pca.py -c=+4,+4  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
+python test_pca.py -c +4 +4  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json
 ```
 and so on...
 
