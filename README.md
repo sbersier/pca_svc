@@ -44,7 +44,7 @@ Which means that all 38 voices are the same. This is absolutely normal.
 
 Example:
 
-`python test_pca.py -c=-8,-6,0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
+`python test_pca.py -c -8-6 0  -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_Alice_young.pth -s Alice -g Alice_young.json`
 
 NOTES: 
 
