@@ -93,7 +93,7 @@ You can fill the rest of the components with the --randomize_other_components=tr
 You can run it a few times, it should stay relatively close to your choice but add a bit of variations.
 
 For example, for a low booming male voice:
-`python test_pca.py -c=10,-10,-10 -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json`
+`python test_pca.py -c 10 -10 -10 -n G_38_speakers_0_v74.pth -f config_pca_38.json -o G_test.pth -s test -g test.json`
 
 ## randomVoice.py: 
 
